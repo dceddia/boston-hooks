@@ -1,0 +1,31 @@
+body {
+  font-size: 2em;
+  font-family: 'IBM Plex Sans';
+  text-align: center;
+}
+button,
+input {
+  font-family: 'IBM Plex Sans';
+  font-size: 20px;
+}
+button {
+  background: #2e4fff;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  outline: none;
+  transition: transform 0.15s;
+}
+
+button:hover {
+  background: #3a56ea;
+  cursor: pointer;
+}
+
+button:active {
+  background: #2340da;
+  transform: scale(0.95);
+}
