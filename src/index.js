@@ -1,46 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const UserContext = React.createContext();
-
 function App() {
-  const [user, setUser] = useState({ username: 'dave' });
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch('https://www.reddit.com/r/reactjs.json')
+      .then(res => res.json())
+      .then(json => json.data.children.map(c => c.data))
+      .then(posts => setPosts(posts));
+  }, []);
 
   return (
-    <UserContext.Provider value={user}>
-      <>
-        <Header user={user} />
-        <Body />
-      </>
-    </UserContext.Provider>
-  );
-}
-
-function Header({ user }) {
-  return <header>Hi {user.username}</header>;
-}
-
-function Body() {
-  return (
-    <main>
-      <Sidebar />
-      <Content />
-    </main>
-  );
-}
-
-function Sidebar() {
-  const user = useContext(UserContext);
-
-  return <aside>{user.username}</aside>;
-}
-
-function Content() {
-  return (
-    <article>
-      This is some great content right here.
-    </article>
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
   );
 }
 
