@@ -9,15 +9,22 @@ input {
   font-size: 20px;
 }
 button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  line-height: 0;
   background: #2e4fff;
   color: #fff;
   font-size: 20px;
-  padding: 10px 15px;
   border: none;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   outline: none;
   transition: transform 0.15s;
+  margin-right: -55px;
+  margin-left: 20px;
 }
 
 button:hover {
@@ -28,4 +35,24 @@ button:hover {
 button:active {
   background: #2340da;
   transform: scale(0.95);
+}
+
+/* Hacks for coffee example */
+h1 {
+  color: #424242;
+  font-size: 4em;
+  margin: 0;
+}
+h4 {
+  margin-bottom: 0.3em;
+}
+h1 + h4 {
+  color: #1565c0;
+}
+h1 + h4 + div + h4 {
+  color: #864108;
+}
+h4 + div {
+  cursor: pointer;
+  user-select: none;
 }
