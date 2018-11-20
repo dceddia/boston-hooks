@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 function App() {
-  const [coffee, setGramsCoffee] = useState(13);
-  const [water, setOuncesWater] = useState(8);
+  const [items, setItems] = useState([
+    'Eat',
+    'Sleep',
+    'Hooks'
+  ]);
 
   return (
     <div>
-      <h1>☕</h1>
-      <h4>Water</h4>
-      <div onClick={() => setOuncesWater(water + 1)}>
-        {water} oz
-      </div>
-      <h4>Coffee</h4>
-      <div onClick={() => setGramsCoffee(coffee + 1)}>
-        {coffee} g
-      </div>
+      <h1>Activities</h1>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <button onClick={() => setItems([...items, 'Hooks'])}>
+        More Hooks
+      </button>
     </div>
   );
 }
