@@ -1,26 +1,41 @@
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const lightswitch = (state, action) => {
-  switch (action) {
-    case 'on':
-      return true;
-    case 'off':
-      return false;
-  }
-};
-
-function Room() {
-  const [light, dispatch] = useReducer(lightswitch, true);
+function App() {
+  const [user, setUser] = useState({ username: 'dave' });
 
   return (
-    <div className={`room ${light ? 'lit' : 'unlit'}`}>
-      <h1>Room</h1>
-      <button onClick={() => dispatch('on')}>ON</button>
-      <button onClick={() => dispatch('off')}>OFF</button>
-    </div>
+    <>
+      <Header user={user} />
+      <Body user={user} />
+    </>
   );
 }
 
-ReactDOM.render(<Room />, document.querySelector('#root'));
+function Header({ user }) {
+  return <header>Hi {user.username}</header>;
+}
+
+function Body({ user }) {
+  return (
+    <main>
+      <Sidebar user={user} />
+      <Content />
+    </main>
+  );
+}
+
+function Sidebar({ user }) {
+  return <aside>{user.username}</aside>;
+}
+
+function Content() {
+  return (
+    <article>
+      This is some great content right here.
+    </article>
+  );
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'));

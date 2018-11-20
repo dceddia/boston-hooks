@@ -60,19 +60,29 @@ ul {
   margin-bottom: 30px;
 }
 
-.room p {
-  margin-bottom: 30px;
+header {
+  text-align: right;
+  padding: 10px;
+  font-size: 20px;
+  background: #ffc107;
 }
 
-.room.lit {
-  background: #fff;
-  color: #333;
+main {
+  display: flex;
+  height: 100vh;
 }
 
-.room.unlit {
-  background: #333;
+aside {
+  flex-basis: 150px;
+  text-align: left;
+  background: #673ab7;
   color: #fff;
+  padding: 10px;
 }
-.room.unlit h1 {
-  color: #fff;
+
+article {
+  flex: 1;
+  text-align: left;
+  font-size: 20px;
+  padding: 20px;
 }
