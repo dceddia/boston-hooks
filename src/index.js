@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
+const UserContext = React.createContext();
 
 function App() {
   const [user, setUser] = useState({ username: 'dave' });
 
   return (
-    <>
-      <Header user={user} />
-      <Body user={user} />
-    </>
+    <UserContext.Provider value={user}>
+      <>
+        <Header user={user} />
+        <Body />
+      </>
+    </UserContext.Provider>
   );
 }
 
@@ -17,16 +21,18 @@ function Header({ user }) {
   return <header>Hi {user.username}</header>;
 }
 
-function Body({ user }) {
+function Body() {
   return (
     <main>
-      <Sidebar user={user} />
+      <Sidebar />
       <Content />
     </main>
   );
 }
 
-function Sidebar({ user }) {
+function Sidebar() {
+  const user = useContext(UserContext);
+
   return <aside>{user.username}</aside>;
 }
 
