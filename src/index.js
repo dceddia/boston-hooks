@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function App() {
-  const [items, setItems] = useState([
-    'Eat',
-    'Sleep',
-    'Hooks'
-  ]);
+const lightswitch = (state, action) => {
+  switch (action) {
+    case 'on':
+      return true;
+    case 'off':
+      return false;
+  }
+};
+
+function Room() {
+  const [light, dispatch] = useReducer(lightswitch, true);
 
   return (
-    <div>
-      <h1>Activities</h1>
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      <button onClick={() => setItems([...items, 'Hooks'])}>
-        More Hooks
-      </button>
+    <div className={`room ${light ? 'lit' : 'unlit'}`}>
+      <h1>Room</h1>
+      <button onClick={() => dispatch('on')}>ON</button>
+      <button onClick={() => dispatch('off')}>OFF</button>
     </div>
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<Room />, document.querySelector('#root'));
