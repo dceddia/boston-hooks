@@ -2,22 +2,32 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function App() {
-  const [posts, setPosts] = useState([]);
-
+function Test() {
+  useOnMount(() => {
+    console.log('mount');
+  });
+  useOnUnmount(() => console.log('unmounting...'));
+  return <p>I am mounted</p>;
+}
+function useOnMount(fn) {
   useEffect(() => {
-    fetch('https://www.reddit.com/r/reactjs.json')
-      .then(res => res.json())
-      .then(json => json.data.children.map(c => c.data))
-      .then(posts => setPosts(posts));
+    fn();
   }, []);
+}
+
+function useOnUnmount(fn) {
+  useEffect(() => fn, []);
+}
+function App() {
+  const [mounted, setMounted] = useState(true);
 
   return (
-    <ul>
-      {posts.map(post => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
+    <div>
+      {mounted && <Test />}
+      <button onClick={() => setMounted(!mounted)}>
+        Toggle Mountedness
+      </button>
+    </div>
   );
 }
 

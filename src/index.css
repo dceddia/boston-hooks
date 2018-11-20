@@ -13,6 +13,7 @@ body {
   font-size: 1em;
   font-family: 'IBM Plex Sans';
   text-align: center;
+  margin-top: 40px;
 }
 button,
 input {
@@ -87,4 +88,12 @@ article {
   text-align: left;
   font-size: 20px;
   padding: 20px;
+}
+
+input {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+p {
+  margin-bottom: 1.5em;
 }
